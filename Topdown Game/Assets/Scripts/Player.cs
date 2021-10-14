@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] float projectileSpeed;
     
 
 
@@ -20,6 +22,16 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         LookAtMouse();
+        Fire();
+    }
+
+    private void Fire()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            GameObject cannonBall = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
+            cannonBall.GetComponent<Rigidbody2D>().velocity = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
     }
 
     private void Move()
