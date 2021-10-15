@@ -9,8 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] GameObject projectilePosition;
     [SerializeField] float projectileSpeed;
-    [SerializeField] float fireRate = 0.5F;
-    [SerializeField] float nextFire = 1.5F;
+    [SerializeField] int ammo = 1;
+    [SerializeField] float reloadTime = 3f;
 
     
     // Start is called before the first frame update
@@ -25,11 +25,23 @@ public class Player : MonoBehaviour
         Move();
         LookAtMouse();
         
-        if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
+        if (Input.GetButtonDown("Fire1") && ammo > 0)
         {
-            nextFire = Time.time + fireRate;
             Fire();
+            ammo = -1;
         }
+        else if (ammo < 0 && Input.GetButtonDown("Fire2"))
+        {
+            StartCoroutine(reload());
+            
+        }
+    }
+
+    private IEnumerator reload()
+    {
+        yield return new WaitForSeconds(reloadTime);
+        ammo = 1;
+        Debug.Log(ammo);
     }
 
     private void Fire()
