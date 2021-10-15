@@ -7,14 +7,16 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] GameObject projectilePrefab;
+    [SerializeField] GameObject projectilePosition;
     [SerializeField] float projectileSpeed;
+    [SerializeField] float fireRate = 0.5F;
+    [SerializeField] float nextFire = 1.5F;
+
     
-
-
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -22,17 +24,21 @@ public class Player : MonoBehaviour
     {
         Move();
         LookAtMouse();
-        Fire();
+        
+        if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            Fire();
+        }
     }
 
     private void Fire()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            GameObject cannonBall = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
-            cannonBall.GetComponent<Rigidbody2D>().velocity = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
+        GameObject cannonBall = Instantiate(projectilePrefab, projectilePosition.transform.position, Quaternion.identity) as GameObject;
+        cannonBall.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
     }
+    
+
 
     private void Move()
     {
