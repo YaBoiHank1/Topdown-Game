@@ -6,31 +6,35 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float playerHealth = 10f;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] GameObject projectilePosition;
     [SerializeField] float projectileSpeed;
-    [SerializeField] int ammo = 1;
+    [SerializeField] public int ammo = 1;
     [SerializeField] float reloadTime = 3f;
 
+    EdgeCollider2D myCollider;
     
     // Start is called before the first frame update
     void Start()
     {
-
+        myCollider = GetComponent<EdgeCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        TakeDamage();
         Move();
         LookAtMouse();
         
         if (Input.GetButtonDown("Fire1") && ammo > 0)
         {
             Fire();
-            ammo = -1;
+            ammo = 0;
+            Debug.Log(ammo);
         }
-        else if (ammo < 0 && Input.GetButtonDown("Fire2"))
+        else if (ammo <= 0 && Input.GetButtonDown("Fire2"))
         {
             StartCoroutine(reload());
             
@@ -50,8 +54,7 @@ public class Player : MonoBehaviour
         cannonBall.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
     }
     
-
-
+    
     private void Move()
     {
         var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
@@ -66,6 +69,15 @@ public class Player : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
         transform.up = direction;
+    }
+
+    private void TakeDamage()
+    {
+        if (myCollider.IsTouchingLayers(LayerMask.GetMask("Hazards", "Enemies", "Enemy Projectiles")))
+        {
+            playerHealth--;
+            Debug.Log(playerHealth);
+        }
     }
 
     
