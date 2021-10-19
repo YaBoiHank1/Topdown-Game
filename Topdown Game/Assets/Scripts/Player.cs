@@ -6,22 +6,31 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player Movement")]
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] public int playerHealth = 10;
+    [SerializeField] float rotationSpeed = 10f;
+    [Header("Player Projectile")]
+    [SerializeField] float projectileSpeed;
+    [SerializeField] float reloadTime = 3f;
+    [SerializeField] public int ammo = 1;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] GameObject projectilePosition;
-    [SerializeField] float projectileSpeed;
-    [SerializeField] public int ammo = 1;
-    [SerializeField] float reloadTime = 3f;
+    [Header("Player Health")]
+    [SerializeField] public int playerHealth = 10;
     [SerializeField] Text healthText;
-    [SerializeField] float rotationSpeed = 10f;
+    [Header("Other")]
+    [SerializeField] Canvas pauseCanvas;
+    [Header("Deez")]
+    [SerializeField] int Nuts;
     
-
+    bool escPressed;
     EdgeCollider2D myCollider;
     
     // Start is called before the first frame update
     void Start()
     {
+        escPressed = false;
+        pauseCanvas.enabled = false;
         myCollider = GetComponent<EdgeCollider2D>();
         healthText.text = "Health: " + playerHealth;
     }
@@ -31,6 +40,7 @@ public class Player : MonoBehaviour
     {
         TakeDamage();
         Move();
+        Pause();
         //LookAtMouse();
         
         if (Input.GetButtonDown("Fire1") && ammo > 0)
@@ -59,7 +69,6 @@ public class Player : MonoBehaviour
         GameObject cannonBall = Instantiate(projectilePrefab, projectilePosition.transform.position, Quaternion.identity) as GameObject;
         cannonBall.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
     }
-    
     
     private void Move()
     {
@@ -96,7 +105,23 @@ public class Player : MonoBehaviour
         }
     }
 
-    
+    private void Pause()
+    {
+        if (Input.GetButtonDown("Cancel") && escPressed == false)
+        {
+            Time.timeScale = 0;
+            pauseCanvas.enabled = true;
+            escPressed = true;
+        }
+        else if (Input.GetButtonDown("Cancel") && escPressed == true)
+        {
+            Time.timeScale = 1;
+            pauseCanvas.enabled = false;
+            escPressed = false;
+        }
+    }
 
-    
+
+
+
 }
