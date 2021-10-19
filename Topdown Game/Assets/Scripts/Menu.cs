@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    //[SerializeField] AudioClip startSound;
-    //[SerializeField] AudioClip quitSound;
+    
 
     public void StartFirstLevel()
     {
