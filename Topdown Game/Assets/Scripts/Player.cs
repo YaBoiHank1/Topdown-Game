@@ -2,16 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float playerHealth = 10f;
+    [SerializeField] public int playerHealth = 10;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] GameObject projectilePosition;
     [SerializeField] float projectileSpeed;
     [SerializeField] public int ammo = 1;
     [SerializeField] float reloadTime = 3f;
+    [SerializeField] Text healthText;
+    [SerializeField] float rotationSpeed = 10f;
+    
 
     EdgeCollider2D myCollider;
     
@@ -19,6 +23,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         myCollider = GetComponent<EdgeCollider2D>();
+        healthText.text = "Health: " + playerHealth;
     }
 
     // Update is called once per frame
@@ -26,7 +31,7 @@ public class Player : MonoBehaviour
     {
         TakeDamage();
         Move();
-        LookAtMouse();
+        //LookAtMouse();
         
         if (Input.GetButtonDown("Fire1") && ammo > 0)
         {
@@ -41,6 +46,7 @@ public class Player : MonoBehaviour
         }
     }
 
+   
     private IEnumerator reload()
     {
         yield return new WaitForSeconds(reloadTime);
@@ -62,23 +68,35 @@ public class Player : MonoBehaviour
         var deltaY = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
         var newYPos = transform.position.y + deltaY;
         transform.position = new Vector2(newXPos, newYPos);
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            transform.Rotate(Vector3.back * rotationSpeed);
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            transform.Rotate(Vector3.forward * rotationSpeed);
+        }
     }
 
-    private void LookAtMouse()
-    {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
-        transform.up = direction;
-    }
+    //private void LookAtMouse()
+    //{
+        //Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
+        //transform.up = direction;
+    //}
 
     private void TakeDamage()
     {
         if (myCollider.IsTouchingLayers(LayerMask.GetMask("Hazards", "Enemies", "Enemy Projectiles")))
         {
             playerHealth--;
+            healthText.text = "Health: " + playerHealth;
             Debug.Log(playerHealth);
         }
     }
+
+    
 
     
 }
