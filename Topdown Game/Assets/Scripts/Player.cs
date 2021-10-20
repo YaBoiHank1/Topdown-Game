@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] float projectileSpeed;
     [SerializeField] float reloadTime = 3f;
     [SerializeField] public int ammo = 1;
-    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] GameObject cannonballPrefab;
+    [SerializeField] GameObject caseshotPrefab;
     [SerializeField] GameObject projectilePosition;
     [Header("Player Health")]
     [SerializeField] public int playerHealth = 10;
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
     [SerializeField] int Nuts;
     
     bool escPressed;
+    bool tabPressed;
     bool isAlive;
     EdgeCollider2D myCollider;
     
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         escPressed = false;
+        tabPressed = false;
         pauseCanvas.enabled = false;
         deathCanvas.enabled = false;
         isAlive = true;
@@ -51,19 +54,11 @@ public class Player : MonoBehaviour
         Move();
         Pause();
         Die();
+        Fire();
+        AmmoSwitch();
         //LookAtMouse();
-        
-        if (Input.GetButtonDown("Fire1") && ammo > 0)
-        {
-            Fire();
-            ammo = 0;
-            Debug.Log(ammo);
-        }
-        else if (ammo <= 0 && Input.GetButtonDown("Fire2"))
-        {
-            StartCoroutine(reload());
-            
-        }
+
+
     }
 
    
@@ -76,9 +71,44 @@ public class Player : MonoBehaviour
 
     private void Fire()
     {
-        GameObject cannonBall = Instantiate(projectilePrefab, projectilePosition.transform.position, Quaternion.identity) as GameObject;
-        cannonBall.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
-        AudioSource.PlayClipAtPoint(shootSFX, Camera.main.transform.position);
+        if (Input.GetButtonDown("Fire1") && ammo > 0)
+        {
+            if (tabPressed == false)
+            {
+                GameObject cannonBall = Instantiate(cannonballPrefab, projectilePosition.transform.position, Quaternion.identity) as GameObject;
+                cannonBall.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
+                AudioSource.PlayClipAtPoint(shootSFX, Camera.main.transform.position);
+                ammo = 0;
+                Debug.Log(ammo);
+            }
+            else if (tabPressed == true)
+            {
+                GameObject caseshot = Instantiate(caseshotPrefab, projectilePosition.transform.position, Quaternion.identity) as GameObject;
+                caseshot.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
+                AudioSource.PlayClipAtPoint(shootSFX, Camera.main.transform.position);
+                ammo = 0;
+                Debug.Log(ammo);
+            }
+        }
+        else if (ammo <= 0 && Input.GetButtonDown("Fire2"))
+        {
+            StartCoroutine(reload());
+
+        }
+    }
+
+    private void AmmoSwitch()
+    {
+        if (Input.GetKey(KeyCode.Tab) && tabPressed == false)
+        {
+            tabPressed = true;
+            Debug.Log("tabPressed is true");
+        }
+        else if (Input.GetKey(KeyCode.Tab) && tabPressed == true)
+        {
+            tabPressed = false;
+            Debug.Log("tabPressed is false");
+        }
     }
 
     

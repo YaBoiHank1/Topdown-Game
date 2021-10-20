@@ -104,7 +104,8 @@ MonoBehaviour:
   projectileSpeed: 15
   reloadTime: 3
   ammo: 1
-  projectilePrefab: {fileID: 1232992773627859446, guid: 689ac94e15d50284b94a404e2434ce97, type: 3}
+  cannonballPrefab: {fileID: 1232992773627859446, guid: 689ac94e15d50284b94a404e2434ce97, type: 3}
+  caseshotPrefab: {fileID: 0}
   projectilePosition: {fileID: 5133999597909845764}
   playerHealth: 10
   healthText: {fileID: 0}
