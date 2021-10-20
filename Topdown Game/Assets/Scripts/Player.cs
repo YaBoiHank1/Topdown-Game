@@ -19,11 +19,14 @@ public class Player : MonoBehaviour
     [SerializeField] public int playerHealth = 10;
     [SerializeField] Text healthText;
     [Header("Other")]
+    [SerializeField] AudioClip shootSFX;
     [SerializeField] Canvas pauseCanvas;
+    [SerializeField] Canvas deathCanvas;
     [Header("Deez")]
     [SerializeField] int Nuts;
     
     bool escPressed;
+    bool isAlive;
     EdgeCollider2D myCollider;
     
     // Start is called before the first frame update
@@ -31,6 +34,8 @@ public class Player : MonoBehaviour
     {
         escPressed = false;
         pauseCanvas.enabled = false;
+        deathCanvas.enabled = false;
+        isAlive = true;
         myCollider = GetComponent<EdgeCollider2D>();
         healthText.text = "Health: " + playerHealth;
     }
@@ -38,9 +43,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive)
+        {
+            return;
+        }
         TakeDamage();
         Move();
         Pause();
+        Die();
         //LookAtMouse();
         
         if (Input.GetButtonDown("Fire1") && ammo > 0)
@@ -68,8 +78,11 @@ public class Player : MonoBehaviour
     {
         GameObject cannonBall = Instantiate(projectilePrefab, projectilePosition.transform.position, Quaternion.identity) as GameObject;
         cannonBall.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
+        AudioSource.PlayClipAtPoint(shootSFX, Camera.main.transform.position);
     }
+
     
+
     private void Move()
     {
         var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
@@ -102,6 +115,16 @@ public class Player : MonoBehaviour
             playerHealth--;
             healthText.text = "Health: " + playerHealth;
             Debug.Log(playerHealth);
+        }
+    }
+
+    private void Die()
+    {
+        if (playerHealth <= 0)
+        {
+            deathCanvas.enabled = true;
+            isAlive = false;
+            
         }
     }
 
