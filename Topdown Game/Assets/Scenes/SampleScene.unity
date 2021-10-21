@@ -1394,10 +1394,6 @@ PrefabInstance:
       propertyPath: pauseCanvas
       value: 
       objectReference: {fileID: 2118588188}
-    - target: {fileID: 5133999596484114983, guid: dc55ca0e45431fb4099205978bb13cfe, type: 3}
-      propertyPath: caseshotPrefab
-      value: 
-      objectReference: {fileID: 1232992773627859446, guid: 212fbd7c135a0b2419c0aedbba22b179, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc55ca0e45431fb4099205978bb13cfe, type: 3}
 --- !u!1001 &6802776237326098606
