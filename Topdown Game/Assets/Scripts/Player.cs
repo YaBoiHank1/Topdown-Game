@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,28 +6,40 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+
     [Header("Player Movement")]
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float rotationSpeed = 10f;
+
     [Header("Player Projectile")]
-    [SerializeField] float projectileSpeed;
     [SerializeField] float reloadTime = 3f;
     [SerializeField] public int ammo = 1;
-    [SerializeField] GameObject cannonballPrefab;
-    [SerializeField] GameObject caseshotPrefab;
     [SerializeField] GameObject projectilePosition;
+    [Header("Cannonball")]
+    [SerializeField] float cannonballSpeed;
+    [SerializeField] GameObject cannonballPrefab;
+
+    [Header("Caseshot")]
+    [SerializeField] GameObject caseshotPrefab;
+    [SerializeField] float caseshotSpeed;
+    [SerializeField] float spread = 60f;
+    [SerializeField] int bulletCount = 6;
+    [SerializeField] float range = 10f;
+
     [Header("Player Health")]
     [SerializeField] public int playerHealth = 10;
     [SerializeField] Text healthText;
+
     [Header("Other")]
     [SerializeField] AudioClip shootSFX;
     [SerializeField] Canvas pauseCanvas;
     [SerializeField] Canvas deathCanvas;
+
     [Header("Deez")]
     [SerializeField] int Nuts;
     
     bool escPressed;
-    bool tabPressed;
+    bool fPressed;
     bool isAlive;
     EdgeCollider2D myCollider;
     
@@ -35,7 +47,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         escPressed = false;
-        tabPressed = false;
+        fPressed = false;
         pauseCanvas.enabled = false;
         deathCanvas.enabled = false;
         isAlive = true;
@@ -55,13 +67,16 @@ public class Player : MonoBehaviour
         Pause();
         Die();
         Fire();
-        AmmoSwitch();
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            fPressed = !fPressed;
+            Debug.Log("Tab" + fPressed);
+        }
         //LookAtMouse();
 
 
     }
-
-   
+    
     private IEnumerator reload()
     {
         yield return new WaitForSeconds(reloadTime);
@@ -73,21 +88,28 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && ammo > 0)
         {
-            if (tabPressed == false)
+            AudioSource.PlayClipAtPoint(shootSFX, Camera.main.transform.position);
+            if (fPressed == false)
             {
                 GameObject cannonBall = Instantiate(cannonballPrefab, projectilePosition.transform.position, Quaternion.identity) as GameObject;
-                cannonBall.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
-                AudioSource.PlayClipAtPoint(shootSFX, Camera.main.transform.position);
+                cannonBall.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * cannonballSpeed;
                 ammo = 0;
                 Debug.Log(ammo);
             }
-            else if (tabPressed == true)
+            else if (fPressed == true)
             {
-                GameObject caseshot = Instantiate(caseshotPrefab, projectilePosition.transform.position, Quaternion.identity) as GameObject;
-                caseshot.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
-                AudioSource.PlayClipAtPoint(shootSFX, Camera.main.transform.position);
-                ammo = 0;
-                Debug.Log(ammo);
+                float spreadRange = spread;
+                for( var i = 0; i < bulletCount; i++)
+                {
+                    float variance = Random.Range(-spreadRange, spreadRange);
+                    Vector3 randomPos = Random.insideUnitCircle * range;
+                    randomPos.z = 0;
+                    GameObject caseshot = Instantiate(caseshotPrefab, projectilePosition.transform.position + randomPos, Quaternion.identity) as GameObject;
+                    caseshot.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * caseshotSpeed;
+                    ammo = 0;
+                    Debug.Log(ammo);
+                }
+                
             }
         }
         else if (ammo <= 0 && Input.GetButtonDown("Fire2"))
@@ -96,23 +118,7 @@ public class Player : MonoBehaviour
 
         }
     }
-
-    private void AmmoSwitch()
-    {
-        if (Input.GetKey(KeyCode.Tab) && tabPressed == false)
-        {
-            tabPressed = true;
-            Debug.Log("tabPressed is true");
-        }
-        else if (Input.GetKey(KeyCode.Tab) && tabPressed == true)
-        {
-            tabPressed = false;
-            Debug.Log("tabPressed is false");
-        }
-    }
-
     
-
     private void Move()
     {
         var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
@@ -174,7 +180,7 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    
 
 
 }
