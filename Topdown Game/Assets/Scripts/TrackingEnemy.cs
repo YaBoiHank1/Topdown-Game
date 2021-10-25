@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class TrackingEnemy : MonoBehaviour
 {
     [SerializeField] float health = 100;
     [SerializeField] float shotCounter;
@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed = 10f;
+    [SerializeField] float rotationSpeed = 1.0f;
+    [SerializeField] Transform target;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +22,21 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Vector3.Distance(transform.position, target.position) > 1f)
+        {
+            RotateTowardsTarget();
+        }
         countDownAndShoot();
+    }
+
+    private void RotateTowardsTarget()
+    {
+        var offset = 270f;
+        Vector2 direction = target.position - transform.position;
+        direction.Normalize();
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle + offset, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
     }
 
     private void countDownAndShoot()
