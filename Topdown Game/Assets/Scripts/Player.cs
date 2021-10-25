@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     bool escPressed;
     bool fPressed;
     bool isAlive;
-    EdgeCollider2D myCollider;
+    BoxCollider2D myCollider;
     
     // Start is called before the first frame update
     void Start()
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         pauseCanvas.enabled = false;
         deathCanvas.enabled = false;
         isAlive = true;
-        myCollider = GetComponent<EdgeCollider2D>();
+        myCollider = GetComponent<BoxCollider2D>();
         healthText.text = "Health: " + playerHealth;
     }
 
