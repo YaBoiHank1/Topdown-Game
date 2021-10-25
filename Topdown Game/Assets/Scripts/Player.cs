@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             fPressed = !fPressed;
-            Debug.Log("Tab" + fPressed);
+            Debug.Log("f " + fPressed);
         }
         //LookAtMouse();
 
