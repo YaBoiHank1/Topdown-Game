@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
 
     [Header("Player Movement")]
-    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float moveSpeed = 3f;
     [SerializeField] float rotationSpeed = 10f;
 
     [Header("Player Projectile")]
@@ -41,11 +41,13 @@ public class Player : MonoBehaviour
     bool escPressed;
     bool fPressed;
     bool isAlive;
+    
     BoxCollider2D myCollider;
     
     // Start is called before the first frame update
     void Start()
     {
+        
         escPressed = false;
         fPressed = false;
         pauseCanvas.enabled = false;
@@ -153,6 +155,22 @@ public class Player : MonoBehaviour
             playerHealth--;
             healthText.text = "Health: " + playerHealth;
             Debug.Log(playerHealth);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Slow Hazard")
+        {
+            moveSpeed = 1.5f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Slow Hazard")
+        {
+            moveSpeed = 3;
         }
     }
 
