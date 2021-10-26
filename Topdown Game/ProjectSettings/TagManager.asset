@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Slow Hazard
   layers:
   - Default
   - TransparentFX
@@ -44,6 +45,12 @@ TagManager:
   - name: Background
     uniqueID: 544490041
     locked: 0
+  - name: Obstacles
+    uniqueID: 719600837
+    locked: 0
+  - name: Capture Points
+    uniqueID: 365264279
+    locked: 0
   - name: Enemies
     uniqueID: 3816615877
     locked: 0
@@ -52,4 +59,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3061917813
+    locked: 0
+  - name: Crew
+    uniqueID: 2721122797
     locked: 0

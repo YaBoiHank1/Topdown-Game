@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
     [SerializeField] float moveSpeed = 3f;
     [SerializeField] float rotationSpeed = 10f;
 
+    [Header("Player Sprites")]
+    [SerializeField] Sprite startSprite;
+    [SerializeField] Sprite deathSprite;
+
     [Header("Player Projectile")]
     [SerializeField] float reloadTime = 3f;
     [SerializeField] public int ammo = 1;
@@ -43,16 +47,18 @@ public class Player : MonoBehaviour
     bool isAlive;
     
     BoxCollider2D myCollider;
+    SpriteRenderer mySprite;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+         
         escPressed = false;
         fPressed = false;
         pauseCanvas.enabled = false;
         deathCanvas.enabled = false;
         isAlive = true;
+        mySprite = GetComponent<SpriteRenderer>();
         myCollider = GetComponent<BoxCollider2D>();
         healthText.text = "Health: " + playerHealth;
     }
@@ -73,6 +79,10 @@ public class Player : MonoBehaviour
         {
             fPressed = !fPressed;
             Debug.Log("f " + fPressed);
+        }
+        if (isAlive)
+        {
+            mySprite.sprite = startSprite;
         }
         //LookAtMouse();
 
@@ -180,7 +190,7 @@ public class Player : MonoBehaviour
         {
             deathCanvas.enabled = true;
             isAlive = false;
-            
+            mySprite.sprite = deathSprite;
         }
     }
 
