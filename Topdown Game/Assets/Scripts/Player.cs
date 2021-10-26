@@ -121,12 +121,14 @@ public class Player : MonoBehaviour
     
     private void Move()
     {
-        var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
-        var newXPos = transform.position.x + deltaX;
-        var deltaY = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
-        var newYPos = transform.position.y + deltaY;
-        transform.position = new Vector2(newXPos, newYPos);
-
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.position += transform.up * Time.deltaTime * moveSpeed;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            transform.position -= transform.up * Time.deltaTime * moveSpeed;
+        }
         if (Input.GetKey(KeyCode.E))
         {
             transform.Rotate(Vector3.back * rotationSpeed);

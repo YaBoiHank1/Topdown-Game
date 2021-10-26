@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Capture : MonoBehaviour
 {
-    public Color capColor;
-    public Color cappingColor;
-    private Color startColor;
+    public Sprite capSprite;
+    public Sprite cappingSprite;
+    private Sprite startSprite;
     public bool capped;
     public float capTime = 5f;
     public float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
-        startColor = GetComponent<SpriteRenderer>().color;
+        startSprite = GetComponent<SpriteRenderer>().sprite;
     }
 
     // Update is called once per frame
@@ -21,14 +21,14 @@ public class Capture : MonoBehaviour
     {
         if (capped)
         {
-            GetComponent<SpriteRenderer>().color = capColor;
+            GetComponent<SpriteRenderer>().sprite = capSprite;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" && !capped)
         {
-            GetComponent<SpriteRenderer>().color = cappingColor;
+            GetComponent<SpriteRenderer>().sprite = cappingSprite;
             timer += Time.deltaTime;
             if (timer >= capTime)
             {
@@ -42,7 +42,7 @@ public class Capture : MonoBehaviour
         {
             if (timer <= capTime && !capped)
             {
-                GetComponent<SpriteRenderer>().color = startColor;
+                GetComponent<SpriteRenderer>().sprite = startSprite;
                 timer = 0;
             }
         }
