@@ -10,10 +10,12 @@ public class Capture : MonoBehaviour
     public bool capped;
     public float capTime = 5f;
     public float timer = 0;
+    GameSession gameSession;
     // Start is called before the first frame update
     void Start()
     {
         startSprite = GetComponent<SpriteRenderer>().sprite;
+        gameSession = FindObjectOfType<GameSession>();
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class Capture : MonoBehaviour
             if (timer >= capTime)
             {
                 capped = true;
+                gameSession.cappedPoints++;
             }
         }
     }
