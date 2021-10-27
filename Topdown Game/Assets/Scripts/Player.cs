@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     [Header("Player Health")]
     [SerializeField] public int playerHealth = 10;
     [SerializeField] Text healthText;
+    [SerializeField] Image healthBar;
 
     [Header("Other")]
     [SerializeField] AudioClip shootSFX;
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
     BoxCollider2D myCollider;
     SpriteRenderer mySprite;
     
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +62,7 @@ public class Player : MonoBehaviour
         isAlive = true;
         mySprite = GetComponent<SpriteRenderer>();
         myCollider = GetComponent<BoxCollider2D>();
-        healthText.text = "Health: " + playerHealth;
+        healthText.text = "HP: " + playerHealth;
     }
 
     // Update is called once per frame
@@ -75,6 +77,7 @@ public class Player : MonoBehaviour
         Pause();
         Die();
         Fire();
+        healthBar.fillAmount = playerHealth;
         if (Input.GetKeyDown(KeyCode.F))
         {
             fPressed = !fPressed;
@@ -163,7 +166,7 @@ public class Player : MonoBehaviour
         if (myCollider.IsTouchingLayers(LayerMask.GetMask("Hazards", "Enemies", "Enemy Projectiles")))
         {
             playerHealth--;
-            healthText.text = "Health: " + playerHealth;
+            healthText.text = "HP: " + playerHealth;
             Debug.Log(playerHealth);
         }
     }
