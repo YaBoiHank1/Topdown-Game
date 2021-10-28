@@ -56,5 +56,8 @@ public class GameSession : MonoBehaviour
             deathCanvas.enabled = false;
             UICanvas.enabled = false;
         }
+        
     }
+
+    
 }

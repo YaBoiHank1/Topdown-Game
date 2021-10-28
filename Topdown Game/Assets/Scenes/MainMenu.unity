@@ -310,6 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2018f385842253c49b0a58603a8c298f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startSound: {fileID: 8300000, guid: ee3763b0a9d721b4cad7be50161d7c1c, type: 3}
+  SFXdelay: 3
 --- !u!4 &830672997
 Transform:
   m_ObjectHideFlags: 0

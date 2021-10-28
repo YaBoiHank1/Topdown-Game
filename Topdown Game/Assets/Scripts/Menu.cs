@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    public AudioClip startSound;
+    public int SFXdelay = 3;
+
     public void LoadMainMenu()
     {
         Time.timeScale = 1;
@@ -13,7 +16,7 @@ public class Menu : MonoBehaviour
 
     public void StartFirstLevel()
     {
-        SceneManager.LoadScene(1);
+        StartCoroutine(LoadFirstLevel());
     }
 
     public void Quit()
@@ -25,5 +28,12 @@ public class Menu : MonoBehaviour
     {
         var currentsceneindex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentsceneindex + 1);
+    }
+
+    private IEnumerator LoadFirstLevel()
+    {
+        AudioSource.PlayClipAtPoint(startSound, Camera.main.transform.position);
+        yield return new WaitForSeconds(SFXdelay);
+        SceneManager.LoadScene(1);
     }
 }
