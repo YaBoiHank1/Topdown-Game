@@ -45,6 +45,9 @@ TagManager:
   - name: Background
     uniqueID: 544490041
     locked: 0
+  - name: Slow Hazards
+    uniqueID: 2021624977
+    locked: 0
   - name: Obstacles
     uniqueID: 719600837
     locked: 0

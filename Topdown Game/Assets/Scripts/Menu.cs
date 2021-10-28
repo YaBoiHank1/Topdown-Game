@@ -20,4 +20,10 @@ public class Menu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void LoadNextLevel()
+    {
+        var currentsceneindex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentsceneindex + 1);
+    }
 }
