@@ -9,15 +9,22 @@ public class FollowingEnemies : MonoBehaviour
     [SerializeField] float minTimeBetweenShots = 0.2f;
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] GameObject projectile;
+    [SerializeField] GameObject enemyProjectilePosition;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float rotationSpeed = 1.0f;
     [SerializeField] float moveSpeed = 1.0f;
     [SerializeField] Transform target;
+    [SerializeField] Animator enemyAnimator;
+
+    private Rigidbody2D myRigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemyAnimator = GetComponent<Animator>();
+        myRigidbody = GetComponent<Rigidbody2D>();
         shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
+        enemyAnimator.SetBool("isShooting", false);
     }
 
     // Update is called once per frame
@@ -27,8 +34,25 @@ public class FollowingEnemies : MonoBehaviour
         {
             MoveTowardsTarget();
             RotateTowardsTarget();
+            enemyAnimator.SetBool("isMoving", true);
         }
-        countDownAndShoot();
+
+        if (Vector3.Distance(transform.position, target.position) < 0f)
+        {
+            enemyAnimator.SetBool("isMoving", false);
+        }
+
+        if (shotCounter <= .02f)
+        {
+            enemyAnimator.SetBool("isShooting", true);
+            enemyAnimator.SetBool("isMoving", false);
+        }
+        else if (shotCounter > .02f)
+        {
+            enemyAnimator.SetBool("isShooting", false);
+        }
+
+            countDownAndShoot();
     }
 
     private void MoveTowardsTarget()
@@ -58,7 +82,7 @@ public class FollowingEnemies : MonoBehaviour
 
     private void Fire()
     {
-        GameObject EnemyProjectile = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+        GameObject EnemyProjectile = Instantiate(projectile, enemyProjectilePosition.transform.position, Quaternion.identity) as GameObject;
         EnemyProjectile.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
     }
 

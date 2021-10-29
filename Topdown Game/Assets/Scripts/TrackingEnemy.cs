@@ -9,14 +9,17 @@ public class TrackingEnemy : MonoBehaviour
     [SerializeField] float minTimeBetweenShots = 0.2f;
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] GameObject projectile;
+    [SerializeField] GameObject enemyProjectilePosition;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float rotationSpeed = 1.0f;
     [SerializeField] Transform target;
+    [SerializeField] Animator enemyAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
         shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
+        enemyAnimator.SetBool("isShooting", false);
     }
 
     // Update is called once per frame
@@ -26,6 +29,17 @@ public class TrackingEnemy : MonoBehaviour
         {
             RotateTowardsTarget();
         }
+
+        if (shotCounter <= .02f)
+        {
+            enemyAnimator.SetBool("isShooting", true);
+        }
+
+        else if (shotCounter > .02f)
+        {
+            enemyAnimator.SetBool("isShooting", false);
+        }
+
         countDownAndShoot();
     }
 
@@ -51,7 +65,7 @@ public class TrackingEnemy : MonoBehaviour
 
     private void Fire()
     {
-        GameObject EnemyProjectile = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+        GameObject EnemyProjectile = Instantiate(projectile, enemyProjectilePosition.transform.position, Quaternion.identity) as GameObject;
         EnemyProjectile.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
     }
 
