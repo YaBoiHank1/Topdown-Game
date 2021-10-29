@@ -17,18 +17,7 @@ public class GameSession : MonoBehaviour
 
 
     // Start is called before the first frame update
-    private void Awake()
-    {
-        int numGameSessions = FindObjectsOfType<GameSession>().Length;
-        if (numGameSessions > 1)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-    }
+    
 
     void Start()
     {
