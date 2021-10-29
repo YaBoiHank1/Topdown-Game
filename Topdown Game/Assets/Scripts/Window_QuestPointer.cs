@@ -5,14 +5,15 @@ using UnityEngine;
 public class Window_QuestPointer : MonoBehaviour
 {
     [SerializeField] private Camera uiCamera;
-    [SerializeField] float borderSize = 100f;
-    [SerializeField] Vector3 capturePoint;
+    [SerializeField] float borderSizeX = 100f;
+    [SerializeField] float borderSizeY = 100f;
+    [SerializeField] Transform capturePoint;
     private Vector3 targetPosition;
     private RectTransform pointerRectTransform;
     // Start is called before the first frame update
     private void Awake()
     {
-        targetPosition = new Vector3(capturePoint.x, capturePoint.y);
+        targetPosition = new Vector3(-35, -24);
         pointerRectTransform = transform.Find("Pointer").GetComponent<RectTransform>();
     }
 
@@ -28,16 +29,18 @@ public class Window_QuestPointer : MonoBehaviour
 
         
         Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(targetPosition);
-        bool isOffScreen = targetPositionScreenPoint.x <= borderSize || targetPositionScreenPoint.x >= borderSize || targetPosition.y >= borderSize;
+        bool isOffScreen = targetPositionScreenPoint.x <= borderSizeX || targetPositionScreenPoint.x >= borderSizeX || targetPosition.y >= borderSizeX;
         //Debug.Log(isOffScreen + " " + targetPositionScreenPoint);
 
         if (isOffScreen)
         {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(true);
+            }
             Vector3 cappedTargetScreenPosition = targetPositionScreenPoint;
-            if (cappedTargetScreenPosition.x <= borderSize) cappedTargetScreenPosition.x = borderSize;
-            if (cappedTargetScreenPosition.x >= borderSize) cappedTargetScreenPosition.x = borderSize;
-            if (cappedTargetScreenPosition.y <= borderSize) cappedTargetScreenPosition.y = borderSize;
-            if (cappedTargetScreenPosition.y >= borderSize) cappedTargetScreenPosition.y = borderSize;
+            cappedTargetScreenPosition.x = Mathf.Clamp(cappedTargetScreenPosition.x, borderSizeX, Screen.width - borderSizeX);
+            cappedTargetScreenPosition.y = Mathf.Clamp(cappedTargetScreenPosition.x, borderSizeY, Screen.width - borderSizeY);
 
             Vector3 pointerWorldPosition = uiCamera.ScreenToWorldPoint(cappedTargetScreenPosition);
             pointerRectTransform.position = pointerWorldPosition;
@@ -45,9 +48,10 @@ public class Window_QuestPointer : MonoBehaviour
         }
         else
         {
-            Vector3 pointerWorldPosition = uiCamera.ScreenToWorldPoint(targetPositionScreenPoint);
-            pointerRectTransform.position = pointerWorldPosition;
-            pointerRectTransform.localPosition = new Vector3(pointerRectTransform.localPosition.x, pointerRectTransform.localPosition.y, 0f);
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
         }
     }
 }
