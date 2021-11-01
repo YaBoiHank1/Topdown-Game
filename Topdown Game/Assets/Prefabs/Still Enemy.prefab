@@ -107,6 +107,7 @@ MonoBehaviour:
   enemyProjectilePosition: {fileID: 6953112340099494653, guid: 5636691c146541447af72cc7ada8cd2c, type: 3}
   projectileSpeed: 10
   enemyAnimator: {fileID: 7679097788654181864}
+  shootSFX: {fileID: 8300000, guid: f8775fac2fdb99244aa1a172504ea0de, type: 3}
 --- !u!95 &7679097788654181864
 Animator:
   serializedVersion: 3

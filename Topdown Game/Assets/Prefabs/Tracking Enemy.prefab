@@ -109,6 +109,7 @@ MonoBehaviour:
   rotationSpeed: 1
   target: {fileID: 5133999596484114977, guid: dc55ca0e45431fb4099205978bb13cfe, type: 3}
   enemyAnimator: {fileID: 3912895744287235514}
+  shootSFX: {fileID: 8300000, guid: f8775fac2fdb99244aa1a172504ea0de, type: 3}
 --- !u!95 &3912895744287235514
 Animator:
   serializedVersion: 3

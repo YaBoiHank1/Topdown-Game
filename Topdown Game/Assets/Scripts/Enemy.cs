@@ -12,10 +12,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject enemyProjectilePosition;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] Animator enemyAnimator;
+    [SerializeField] AudioClip shootSFX;
 
+    BoxCollider2D myCollider;
     // Start is called before the first frame update
     void Start()
     {
+        myCollider = GetComponent<BoxCollider2D>();
         shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
         enemyAnimator.SetBool("isShooting", false);
     }
@@ -23,6 +26,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (shotCounter <= .02f)
         {
             enemyAnimator.SetBool("isShooting", true);
@@ -32,7 +36,7 @@ public class Enemy : MonoBehaviour
         {
             enemyAnimator.SetBool("isShooting", false);
         }
-
+        
         countDownAndShoot();
     }
 
@@ -48,6 +52,7 @@ public class Enemy : MonoBehaviour
 
     private void Fire()
     {
+        AudioSource.PlayClipAtPoint(shootSFX, gameObject.transform.position);
         GameObject EnemyProjectile = Instantiate(projectile, enemyProjectilePosition.transform.position, Quaternion.identity) as GameObject;
         EnemyProjectile.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
     }
@@ -66,4 +71,6 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
 }
