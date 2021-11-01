@@ -35,6 +35,10 @@ public class Player : MonoBehaviour
     [SerializeField] Text healthText;
     [SerializeField] Image healthBar;
 
+    [Header("Cameras")]
+    [SerializeField] Camera mainCamera;
+    [SerializeField] Camera mapCamera;
+
     [Header("Other")]
     [SerializeField] AudioClip shootSFX;
     [SerializeField] Canvas pauseCanvas;
@@ -54,7 +58,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         
+        mainCamera.enabled = true;
+        mapCamera.enabled = false;
         escPressed = false;
         fPressed = false;
         pauseCanvas.enabled = false;
@@ -86,6 +91,16 @@ public class Player : MonoBehaviour
         if (isAlive)
         {
             mySprite.sprite = startSprite;
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            mapCamera.enabled = !mapCamera.enabled;
+        }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            mapCamera.enabled = !mapCamera.enabled;
         }
         //LookAtMouse();
 

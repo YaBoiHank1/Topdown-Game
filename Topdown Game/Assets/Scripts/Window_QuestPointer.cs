@@ -46,7 +46,7 @@ public class Window_QuestPointer : MonoBehaviour
             pointerRectTransform.position = pointerWorldPosition;
             pointerRectTransform.localPosition = new Vector3(pointerRectTransform.localPosition.x, pointerRectTransform.localPosition.y, 0f);
         }
-        else
+        else if (!isOffScreen)
         {
             foreach (Transform child in transform)
             {
