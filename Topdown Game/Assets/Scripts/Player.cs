@@ -92,12 +92,12 @@ public class Player : MonoBehaviour
         {
             mySprite.sprite = startSprite;
         }
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             mainCamera.enabled = !mainCamera.enabled;
             mapCamera.enabled = !mapCamera.enabled;
         }
-        else if (Input.GetButtonUp("Jump"))
+        else if (Input.GetKeyUp(KeyCode.Tab))
         {
             mainCamera.enabled = !mainCamera.enabled;
             mapCamera.enabled = !mapCamera.enabled;
@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
 
     private void Fire()
     {
-        if (Input.GetButtonDown("Fire1") && ammo > 0)
+        if (Input.GetButtonDown("Jump") && ammo > 0)
         {
             AudioSource.PlayClipAtPoint(shootSFX, Camera.main.transform.position);
             if (fPressed == false)

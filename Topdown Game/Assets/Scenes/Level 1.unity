@@ -45867,6 +45867,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1749376889}
     - target: {fileID: 1681581019261109835, guid: f4da291b4bc01cd4db91ad472cf3d70d, type: 3}
+      propertyPath: capturePoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681581019261109835, guid: f4da291b4bc01cd4db91ad472cf3d70d, type: 3}
       propertyPath: capturePoints.Array.data[0]
       value: 
       objectReference: {fileID: 514588417}
