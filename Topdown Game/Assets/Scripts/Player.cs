@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         Pause();
         Die();
         Fire();
-        healthBar.fillAmount = playerHealth;
+        healthBar.fillAmount = playerHealth * .1f;
         if (Input.GetKeyDown(KeyCode.F))
         {
             fPressed = !fPressed;
@@ -196,6 +196,7 @@ public class Player : MonoBehaviour
         {
             playerHealth--;
             healthText.text = "HP: " + playerHealth;
+            healthBar.fillAmount = playerHealth * .1f;
             Debug.Log(playerHealth);
         }
     }
