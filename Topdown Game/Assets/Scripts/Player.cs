@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
     
     BoxCollider2D myCollider;
     SpriteRenderer mySprite;
+    Animator myAnimator;
     
     
     // Start is called before the first frame update
@@ -67,6 +68,7 @@ public class Player : MonoBehaviour
         isAlive = true;
         mySprite = GetComponent<SpriteRenderer>();
         myCollider = GetComponent<BoxCollider2D>();
+        myAnimator = GetComponent<Animator>();
         healthText.text = "HP: " + playerHealth;
     }
 
@@ -154,10 +156,22 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             transform.position += transform.up * Time.deltaTime * moveSpeed;
+            myAnimator.SetBool("Forwards", true);
+            myAnimator.SetBool("Backwards", false);
+            myAnimator.SetBool("Idle", false);
         }
         else if (Input.GetKey(KeyCode.S))
         {
             transform.position -= transform.up * Time.deltaTime * moveSpeed;
+            myAnimator.SetBool("Backwards", true);
+            myAnimator.SetBool("Forwards", false);
+            myAnimator.SetBool("Idle", false);
+        }
+        else
+        {
+            myAnimator.SetBool("Forwards", false);
+            myAnimator.SetBool("Backwards", false);
+            myAnimator.SetBool("Idle", true);
         }
         if (Input.GetKey(KeyCode.E))
         {
