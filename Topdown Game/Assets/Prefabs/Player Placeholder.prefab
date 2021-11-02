@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  rotationSpeed: 0.5
+  rotationSpeed: 0.14
   startSprite: {fileID: 21300000, guid: fb6c64cb10b31354d8462fc0520cb82b, type: 3}
   deathSprite: {fileID: 21300000, guid: 1962b3ba493b2df44b4457f8c9447ac7, type: 3}
   reloadTime: 3

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CannonForwards
+  m_Name: AusIdle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -2936364675925100832, guid: 8f176a2b7f9abff4fbde316bb309d958, type: 3}
-    - time: 0.083333336
-      value: {fileID: 473994648830854038, guid: 8f176a2b7f9abff4fbde316bb309d958, type: 3}
-    - time: 0.16666667
-      value: {fileID: 2987023305611459110, guid: 8f176a2b7f9abff4fbde316bb309d958, type: 3}
-    - time: 0.25
-      value: {fileID: 5923599768254182804, guid: 8f176a2b7f9abff4fbde316bb309d958, type: 3}
+      value: {fileID: -3825820394742465606, guid: 75339680f17e43749879359dd0fa72e2, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,16 +40,13 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -2936364675925100832, guid: 8f176a2b7f9abff4fbde316bb309d958, type: 3}
-    - {fileID: 473994648830854038, guid: 8f176a2b7f9abff4fbde316bb309d958, type: 3}
-    - {fileID: 2987023305611459110, guid: 8f176a2b7f9abff4fbde316bb309d958, type: 3}
-    - {fileID: 5923599768254182804, guid: 8f176a2b7f9abff4fbde316bb309d958, type: 3}
+    - {fileID: -3825820394742465606, guid: 75339680f17e43749879359dd0fa72e2, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.083333336
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
