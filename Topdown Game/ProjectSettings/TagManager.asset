@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Slow Hazard
   - Capture Point
+  - Ammo
+  - Health
   layers:
   - Default
   - TransparentFX

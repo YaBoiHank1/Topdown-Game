@@ -16,6 +16,8 @@ public class FollowingEnemies : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] Animator enemyAnimator;
     [SerializeField] AudioClip shootSFX;
+    [SerializeField] public GameObject healthPrefab;
+    [SerializeField] public GameObject ammoPrefab;
 
     private Rigidbody2D myRigidbody;
     BoxCollider2D myCollider;
@@ -103,8 +105,19 @@ public class FollowingEnemies : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            int r = Random.Range(0, 10);
+            if (r < 3)
+            {
+                GameObject AmmoPoweup = Instantiate(ammoPrefab, enemyProjectilePosition.transform.position, Quaternion.identity) as GameObject;
+
+            }
+            if (r > 6)
+            {
+                GameObject HealthPowerup = Instantiate(healthPrefab, enemyProjectilePosition.transform.position, Quaternion.identity) as GameObject;
+
+            }
         }
     }
 
-    
+
 }
