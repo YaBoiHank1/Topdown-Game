@@ -475,7 +475,7 @@ MonoBehaviour:
   caseshotPrefab: {fileID: 1232992773627859446, guid: 212fbd7c135a0b2419c0aedbba22b179, type: 3}
   caseshotSpeed: 10
   spread: 60
-  bulletCount: 15
+  bulletCount: 8
   range: 0.5
   playerHealth: 10
   healthText: {fileID: 0}
@@ -506,7 +506,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &833760195
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -520,7 +520,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009361029, y: 0.4862814}
+  m_Offset: {x: -0.009361029, y: 0.018180847}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -531,7 +531,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32864618, y: 1.5413659}
+  m_Size: {x: 0.32864618, y: 2.4775667}
   m_EdgeRadius: 0
 --- !u!95 &-565931030367916076
 Animator:

@@ -11,6 +11,7 @@ public class Capture : MonoBehaviour
     public bool spawnEnemies;
     public float capTime = 5f;
     public float timer = 0;
+    float range = 10f;
     GameSession gameSession;
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] float interval = 100;
@@ -31,8 +32,10 @@ public class Capture : MonoBehaviour
             counter += 1;
             if (counter >= interval)
             {
-                 counter = 0;
-                 Instantiate(enemyPrefab, transform.position, transform.rotation);
+                counter = 0;
+                Vector3 randomPos = Random.insideUnitCircle * range;
+                randomPos.z = 0f;
+                Instantiate(enemyPrefab, transform.position + randomPos, transform.rotation);
             }
         }
         

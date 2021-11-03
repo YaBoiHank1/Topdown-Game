@@ -198,7 +198,7 @@ public class Player : MonoBehaviour
 
     private void TakeDamage()
     {
-        if (myCollider.IsTouchingLayers(LayerMask.GetMask("Hazards", "Enemies", "Enemy Projectiles")))
+        if (myCollider.IsTouchingLayers(LayerMask.GetMask("Hazards", "Enemy Projectiles")))
         {
             playerHealth--;
             healthText.text = "HP: " + playerHealth;
