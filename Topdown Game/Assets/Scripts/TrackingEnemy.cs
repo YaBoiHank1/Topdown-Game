@@ -15,6 +15,8 @@ public class TrackingEnemy : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] Animator enemyAnimator;
     [SerializeField] AudioClip shootSFX;
+    [SerializeField] public GameObject healthPrefab;
+    [SerializeField] public GameObject ammoPrefab;
 
     BoxCollider2D myCollider;
     // Start is called before the first frame update
@@ -86,8 +88,19 @@ public class TrackingEnemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            int r = Random.Range(0, 10);
+            if (r < 3)
+            {
+                GameObject AmmoPoweup = Instantiate(ammoPrefab, enemyProjectilePosition.transform.position, Quaternion.identity) as GameObject;
+
+            }
+            if (r > 6)
+            {
+                GameObject HealthPowerup = Instantiate(healthPrefab, enemyProjectilePosition.transform.position, Quaternion.identity) as GameObject;
+
+            }
         }
     }
 
-    
+
 }

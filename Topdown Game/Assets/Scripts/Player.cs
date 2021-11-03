@@ -104,6 +104,7 @@ public class Player : MonoBehaviour
             mainCamera.enabled = !mainCamera.enabled;
             mapCamera.enabled = !mapCamera.enabled;
         }
+        
         //LookAtMouse();
 
 
@@ -183,12 +184,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    //private void LookAtMouse()
-    //{
+    
+
+        //private void LookAtMouse()
+        //{
         //Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
         //transform.up = direction;
-    //}
+        //}
 
     private void TakeDamage()
     {
@@ -214,6 +217,25 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Slow Hazard")
         {
             moveSpeed = 3;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ammo")
+        {
+            ammo = 1;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Health")
+        {
+            playerHealth +=2;
+            if (playerHealth > 10)
+            {
+                playerHealth = 10;
+            }
+            healthText.text = "HP: " + playerHealth;
+            Destroy(collision.gameObject);
         }
     }
 
