@@ -122,12 +122,14 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") && ammo > 0)
         {
             AudioSource.PlayClipAtPoint(shootSFX, Camera.main.transform.position);
+            myAnimator.SetTrigger("Fire");
             if (fPressed == false)
             {
                 GameObject cannonBall = Instantiate(cannonballPrefab, projectilePosition.transform.position, Quaternion.identity) as GameObject;
                 cannonBall.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * cannonballSpeed;
                 ammo = 0;
                 Debug.Log(ammo);
+                //myAnimator.ResetTrigger("Fire");
             }
             else if (fPressed == true)
             {
@@ -141,6 +143,7 @@ public class Player : MonoBehaviour
                     caseshot.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * caseshotSpeed;
                     ammo = 0;
                     Debug.Log(ammo);
+                    //myAnimator.ResetTrigger("Fire");
                 }
                 
             }
