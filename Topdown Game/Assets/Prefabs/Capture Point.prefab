@@ -101,6 +101,8 @@ MonoBehaviour:
   capped: 0
   capTime: 5
   timer: 0
+  enemyPrefab: {fileID: 7021910727597908996, guid: 43ad31fd11a96e64595ea73f6ff18f57, type: 3}
+  interval: 1000
 --- !u!61 &1457973283298867665
 BoxCollider2D:
   m_ObjectHideFlags: 0

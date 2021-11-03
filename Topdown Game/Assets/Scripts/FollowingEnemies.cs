@@ -93,6 +93,12 @@ public class FollowingEnemies : MonoBehaviour
         EnemyProjectile.GetComponent<Rigidbody2D>().velocity = gameObject.transform.up * projectileSpeed;
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        processHit(damageDealer);
+    }
+
     private void processHit(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
