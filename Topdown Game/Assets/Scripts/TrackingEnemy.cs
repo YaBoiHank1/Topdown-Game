@@ -12,6 +12,7 @@ public class TrackingEnemy : MonoBehaviour
     [SerializeField] GameObject enemyProjectilePosition;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float rotationSpeed = 1.0f;
+    [SerializeField] float range = 5f;
     [SerializeField] Transform target;
     [SerializeField] Animator enemyAnimator;
     [SerializeField] AudioClip shootSFX;
@@ -31,9 +32,10 @@ public class TrackingEnemy : MonoBehaviour
     void Update()
     {
         
-        if (Vector3.Distance(transform.position, target.position) > 1f)
+        if (Vector3.Distance(transform.position, target.position) <= range)
         {
             RotateTowardsTarget();
+            countDownAndShoot();
         }
 
         if (shotCounter <= .02f)
@@ -45,8 +47,6 @@ public class TrackingEnemy : MonoBehaviour
         {
             enemyAnimator.SetBool("isShooting", false);
         }
-        
-        countDownAndShoot();
     }
 
     private void RotateTowardsTarget()
