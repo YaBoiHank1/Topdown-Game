@@ -99,10 +99,13 @@ MonoBehaviour:
   capSprite: {fileID: 21300000, guid: 8a69589a79db9904d81a97785bf37475, type: 3}
   cappingSprite: {fileID: 21300000, guid: 6ebd2f618426d294a9181235fa6f592e, type: 3}
   capped: 0
+  spawnEnemies: 0
   capTime: 5
   timer: 0
-  enemyPrefab: {fileID: 7021910727597908996, guid: 43ad31fd11a96e64595ea73f6ff18f57, type: 3}
+  enemyPrefab: {fileID: 0}
   interval: 1000
+  enemyCount: 0
+  enemyMax: 30
 --- !u!61 &1457973283298867665
 BoxCollider2D:
   m_ObjectHideFlags: 0

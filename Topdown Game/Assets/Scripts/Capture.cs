@@ -16,6 +16,9 @@ public class Capture : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] float interval = 100;
     float counter = 0;
+    public int enemyCount = 0;
+    public int enemyMax = 30;
+    [SerializeField] bool spawner;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,10 @@ public class Capture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (spawner)
+        {
+            spawnEnemies = false;
+        }
         if (spawnEnemies == true && !capped)
         {
             counter += 1;
@@ -36,9 +43,13 @@ public class Capture : MonoBehaviour
                 Vector3 randomPos = Random.insideUnitCircle * range;
                 randomPos.z = 0f;
                 Instantiate(enemyPrefab, transform.position + randomPos, transform.rotation);
+                enemyCount += 1;
             }
         }
-        
+        if (enemyCount >= enemyMax)
+        {
+            spawnEnemies = false;
+        }
         if (capped)
         {
             GetComponent<SpriteRenderer>().sprite = capSprite;
@@ -62,12 +73,26 @@ public class Capture : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            spawnEnemies = true;
-            if (timer <= capTime && !capped)
+            if (!spawner)
             {
-                GetComponent<SpriteRenderer>().sprite = startSprite;
-                timer = 0;
+                spawnEnemies = true;
+                if (timer <= capTime && !capped)
+                {
+                    GetComponent<SpriteRenderer>().sprite = startSprite;
+                    timer = 0;
+                }
             }
+            else if (spawner)
+            {
+                spawnEnemies = false;
+                if (timer <= capTime && !capped)
+                {
+                    GetComponent<SpriteRenderer>().sprite = startSprite;
+                    timer = 0;
+                }
+            }
+            
+            
         }
     }
 }

@@ -201,10 +201,11 @@ public class Player : MonoBehaviour
         
         if (myCollider.IsTouchingLayers(LayerMask.GetMask("Hazards", "Enemy Projectiles")))
         {
-            myAnimator.SetTrigger("Hurt");
+            
             playerHealth--;
             healthText.text = "HP: " + playerHealth;
             healthBar.fillAmount = playerHealth * .1f;
+            myAnimator.SetTrigger("Hurt");
             Debug.Log(playerHealth);
         }
     }
@@ -248,6 +249,7 @@ public class Player : MonoBehaviour
     {
         if (playerHealth <= 0)
         {
+            myAnimator.SetBool("Alive", true);
             deathCanvas.enabled = true;
             isAlive = false;
             mySprite.sprite = deathSprite;

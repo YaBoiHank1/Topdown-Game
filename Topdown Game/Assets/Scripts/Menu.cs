@@ -30,6 +30,12 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(currentsceneindex + 1);
     }
 
+    public void RetryLevel()
+    {
+        var currentsceneindex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentsceneindex);
+    }
+
     private IEnumerator LoadFirstLevel()
     {
         AudioSource.PlayClipAtPoint(startSound, Camera.main.transform.position);
