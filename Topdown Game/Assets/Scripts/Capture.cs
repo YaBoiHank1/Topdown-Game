@@ -14,13 +14,11 @@ public class Capture : MonoBehaviour
     float range = 10f;
     GameSession gameSession;
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] float minTime = 1000f;
-    [SerializeField] float maxTime = 10000f;
-    float Etimer;
+    [SerializeField] float interval = 100;
+    float counter = 0;
     // Start is called before the first frame update
     void Start()
     {
-        Etimer = Random.Range(minTime, maxTime);
         spawnEnemies = true;
         startSprite = GetComponent<SpriteRenderer>().sprite;
         gameSession = FindObjectOfType<GameSession>();
@@ -31,12 +29,16 @@ public class Capture : MonoBehaviour
     {
         if (spawnEnemies == true && !capped)
         {
-            StartCoroutine(SpawnEnemies());
+            counter += 1;
+            if (counter >= interval)
+            {
+                counter = 0;
+                Vector3 randomPos = Random.insideUnitCircle * range;
+                randomPos.z = 0f;
+                Instantiate(enemyPrefab, transform.position + randomPos, transform.rotation);
+            }
         }
-        else if (!spawnEnemies )
-        {
-            StopCoroutine(SpawnEnemies());
-        }
+        
         if (capped)
         {
             GetComponent<SpriteRenderer>().sprite = capSprite;
@@ -52,7 +54,6 @@ public class Capture : MonoBehaviour
             if (timer >= capTime)
             {
                 capped = true;
-                spawnEnemies = false;
                 gameSession.cappedPoints++;
             }
         }
@@ -67,17 +68,6 @@ public class Capture : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = startSprite;
                 timer = 0;
             }
-        }
-    }
-    IEnumerator SpawnEnemies()
-    {
-        while (true)
-        {
-            Etimer = Random.Range(minTime, maxTime);
-            yield return new WaitForSeconds(Etimer);
-            Vector3 randomPos = Random.insideUnitCircle * range;
-            randomPos.z = 0f;
-            Instantiate(enemyPrefab, transform.position + randomPos, transform.rotation);
         }
     }
 }

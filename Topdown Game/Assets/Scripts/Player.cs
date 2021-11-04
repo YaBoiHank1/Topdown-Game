@@ -70,10 +70,6 @@ public class Player : MonoBehaviour
         myCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
         healthText.text = "HP: " + playerHealth;
-        if (isAlive)
-        {
-            myAnimator.SetBool("Alive", true);
-        }
     }
 
     // Update is called once per frame
@@ -252,7 +248,6 @@ public class Player : MonoBehaviour
     {
         if (playerHealth <= 0)
         {
-            myAnimator.SetBool("Alive", false);
             deathCanvas.enabled = true;
             isAlive = false;
             mySprite.sprite = deathSprite;
