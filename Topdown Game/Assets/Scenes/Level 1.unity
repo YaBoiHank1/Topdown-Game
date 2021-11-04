@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Following Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7021910727597908998, guid: 43ad31fd11a96e64595ea73f6ff18f57, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 833760197}
     - target: {fileID: 7021910727597909000, guid: 43ad31fd11a96e64595ea73f6ff18f57, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -36636,9 +36640,8 @@ MonoBehaviour:
   projectileSpeed: 10
   enemyAnimator: {fileID: 590665522}
   shootSFX: {fileID: 8300000, guid: f8775fac2fdb99244aa1a172504ea0de, type: 3}
-  powerups:
-  - {fileID: 4311418678920004248, guid: 767e71b12419bb147836bcf3cc36ca61, type: 3}
-  - {fileID: 8612569217924807617, guid: 3b040e8d76a72da4084028d16dac286c, type: 3}
+  healthPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
 --- !u!212 &590665524
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -43557,9 +43560,8 @@ MonoBehaviour:
   projectileSpeed: 10
   enemyAnimator: {fileID: 1217753678}
   shootSFX: {fileID: 8300000, guid: f8775fac2fdb99244aa1a172504ea0de, type: 3}
-  powerups:
-  - {fileID: 4311418678920004248, guid: 767e71b12419bb147836bcf3cc36ca61, type: 3}
-  - {fileID: 8612569217924807617, guid: 3b040e8d76a72da4084028d16dac286c, type: 3}
+  healthPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
 --- !u!212 &1217753680
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -46771,9 +46773,11 @@ MonoBehaviour:
   enemyProjectilePosition: {fileID: 333085706}
   projectileSpeed: 10
   rotationSpeed: 1
-  target: {fileID: 5133999596484114977, guid: dc55ca0e45431fb4099205978bb13cfe, type: 3}
+  target: {fileID: 833760197}
   enemyAnimator: {fileID: 3912895745107192574}
   shootSFX: {fileID: 8300000, guid: f8775fac2fdb99244aa1a172504ea0de, type: 3}
+  healthPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
 --- !u!1001 &6802776237326098606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47057,9 +47061,8 @@ MonoBehaviour:
   projectileSpeed: 10
   enemyAnimator: {fileID: 7679097788253191330}
   shootSFX: {fileID: 8300000, guid: f8775fac2fdb99244aa1a172504ea0de, type: 3}
-  powerups:
-  - {fileID: 4311418678920004248, guid: 767e71b12419bb147836bcf3cc36ca61, type: 3}
-  - {fileID: 8612569217924807617, guid: 3b040e8d76a72da4084028d16dac286c, type: 3}
+  healthPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
 --- !u!1001 &9198657575984833250
 PrefabInstance:
   m_ObjectHideFlags: 0
