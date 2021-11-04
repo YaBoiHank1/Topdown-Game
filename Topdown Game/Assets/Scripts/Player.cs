@@ -198,8 +198,10 @@ public class Player : MonoBehaviour
 
     private void TakeDamage()
     {
+        
         if (myCollider.IsTouchingLayers(LayerMask.GetMask("Hazards", "Enemy Projectiles")))
         {
+            myAnimator.SetTrigger("Hurt");
             playerHealth--;
             healthText.text = "HP: " + playerHealth;
             healthBar.fillAmount = playerHealth * .1f;
