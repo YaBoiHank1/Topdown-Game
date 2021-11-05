@@ -105,7 +105,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 0}
   interval: 1000
   enemyCount: 0
-  enemyMax: 30
+  enemyMax: 15
+  spawner: 0
 --- !u!61 &1457973283298867665
 BoxCollider2D:
   m_ObjectHideFlags: 0

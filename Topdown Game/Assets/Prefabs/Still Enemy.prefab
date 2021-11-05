@@ -101,8 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   shotCounter: 0
-  minTimeBetweenShots: 0.2
-  maxTimeBetweenShots: 3
+  minTimeBetweenShots: 2
+  maxTimeBetweenShots: 5
   projectile: {fileID: 5533505624361329420, guid: 2aacd8689c8d3b546a8f5456b1221f19, type: 3}
   enemyProjectilePosition: {fileID: 6953112340099494653, guid: 5636691c146541447af72cc7ada8cd2c, type: 3}
   projectileSpeed: 10
