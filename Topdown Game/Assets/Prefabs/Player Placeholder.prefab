@@ -483,6 +483,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   mapCamera: {fileID: 0}
   shootSFX: {fileID: 8300000, guid: a2a273b30335535408df67cd14f3d1ec, type: 3}
+  deathMusic: {fileID: 8300000, guid: 4f62b8148abde194f89b321a219582ce, type: 3}
   pauseCanvas: {fileID: 0}
   deathCanvas: {fileID: 0}
   Nuts: 0

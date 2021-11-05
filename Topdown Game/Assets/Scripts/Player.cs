@@ -27,7 +27,9 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject caseshotPrefab;
     [SerializeField] float caseshotSpeed;
     [SerializeField] float spread = 60f;
-    [SerializeField] int bulletCount = 6;
+    [SerializeField] static int minBullets = 3;
+    [SerializeField] static int maxBullets = 9;
+    [SerializeField] int bulletCount;
     [SerializeField] float range = 10f;
 
     [Header("Player Health")]
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
 
     [Header("Other")]
     [SerializeField] AudioClip shootSFX;
+    [SerializeField] AudioClip deathMusic;
     [SerializeField] Canvas pauseCanvas;
     [SerializeField] Canvas deathCanvas;
 
@@ -70,6 +73,7 @@ public class Player : MonoBehaviour
         myCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
         healthText.text = "HP: " + playerHealth;
+        
     }
 
     // Update is called once per frame
@@ -106,8 +110,7 @@ public class Player : MonoBehaviour
         }
         
         //LookAtMouse();
-
-
+        
     }
     
     private IEnumerator reload()
@@ -133,6 +136,7 @@ public class Player : MonoBehaviour
             }
             else if (fPressed == true)
             {
+                bulletCount = Random.Range(minBullets, maxBullets);
                 float spreadRange = spread;
                 for( var i = 0; i < bulletCount; i++)
                 {
@@ -252,7 +256,7 @@ public class Player : MonoBehaviour
             myAnimator.SetBool("Alive", true);
             deathCanvas.enabled = true;
             isAlive = false;
-            mySprite.sprite = deathSprite;
+            AudioSource.PlayClipAtPoint(deathMusic, Camera.main.transform.position);
         }
     }
 
