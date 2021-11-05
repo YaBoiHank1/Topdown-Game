@@ -483,7 +483,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   mapCamera: {fileID: 0}
   shootSFX: {fileID: 8300000, guid: a2a273b30335535408df67cd14f3d1ec, type: 3}
-  deathMusic: {fileID: 8300000, guid: 4f62b8148abde194f89b321a219582ce, type: 3}
+  deathMusic: {fileID: 8300000, guid: 774c54b7265886746a2b373199e71f81, type: 3}
   pauseCanvas: {fileID: 0}
   deathCanvas: {fileID: 0}
   Nuts: 0
@@ -507,7 +507,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &833760195
 BoxCollider2D:
   m_ObjectHideFlags: 0

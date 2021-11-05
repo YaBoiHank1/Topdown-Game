@@ -109,7 +109,7 @@ MonoBehaviour:
   rotationSpeed: 1
   moveSpeed: 1
   range: 5
-  target: {fileID: 5133999596484114977, guid: dc55ca0e45431fb4099205978bb13cfe, type: 3}
+  target: {fileID: 0}
   enemyAnimator: {fileID: 7021910727597908997}
   shootSFX: {fileID: 8300000, guid: f8775fac2fdb99244aa1a172504ea0de, type: 3}
   healthPrefab: {fileID: 8612569217924807617, guid: 3b040e8d76a72da4084028d16dac286c, type: 3}
@@ -153,7 +153,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!61 &7021910727597909001
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.35096833}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.41137373, y: 0.21770883}
     oldSize: {x: 0.64, y: 1.28}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5

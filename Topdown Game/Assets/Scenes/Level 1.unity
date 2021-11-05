@@ -48520,6 +48520,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5133999596484114978, guid: dc55ca0e45431fb4099205978bb13cfe, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5133999596484114982, guid: dc55ca0e45431fb4099205978bb13cfe, type: 3}
       propertyPath: m_Name
       value: Player Placeholder
@@ -48532,10 +48536,6 @@ PrefabInstance:
       propertyPath: mapCamera
       value: 
       objectReference: {fileID: 1364060646}
-    - target: {fileID: 5133999596484114983, guid: dc55ca0e45431fb4099205978bb13cfe, type: 3}
-      propertyPath: deathMusic
-      value: 
-      objectReference: {fileID: 8300000, guid: 774c54b7265886746a2b373199e71f81, type: 3}
     - target: {fileID: 5133999596484114983, guid: dc55ca0e45431fb4099205978bb13cfe, type: 3}
       propertyPath: healthText
       value: 

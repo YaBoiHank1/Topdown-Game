@@ -48,12 +48,14 @@ public class Menu : MonoBehaviour
     public void LoadNextLevel()
     {
         var currentsceneindex = SceneManager.GetActiveScene().buildIndex;
+        Time.timeScale = 1;
         SceneManager.LoadScene(currentsceneindex + 1);
     }
 
     public void RetryLevel()
     {
         var currentsceneindex = SceneManager.GetActiveScene().buildIndex;
+        Time.timeScale = 1;
         SceneManager.LoadScene(currentsceneindex);
     }
 

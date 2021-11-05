@@ -24,6 +24,7 @@ public class GameSession : MonoBehaviour
         pointsRemaining = capturePoints.Count - cappedPoints;
         objectiveText.text = "Points Remaining: " + pointsRemaining;
         victoryCanvas.enabled = false;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -33,6 +34,7 @@ public class GameSession : MonoBehaviour
         objectiveText.text = "Capture " + pointsRemaining + " Points";
         if (cappedPoints >= capturePoints.Count)
         {
+            Time.timeScale = 0;
             victoryCanvas.enabled = true;
             var hasPlayed = false;
             if (!hasPlayed)
