@@ -48520,10 +48520,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5133999596484114978, guid: dc55ca0e45431fb4099205978bb13cfe, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5133999596484114982, guid: dc55ca0e45431fb4099205978bb13cfe, type: 3}
       propertyPath: m_Name
       value: Player Placeholder

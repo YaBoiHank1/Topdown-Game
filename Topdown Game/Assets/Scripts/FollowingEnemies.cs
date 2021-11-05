@@ -14,7 +14,6 @@ public class FollowingEnemies : MonoBehaviour
     [SerializeField] float rotationSpeed = 1.0f;
     [SerializeField] float moveSpeed = 1.0f;
     [SerializeField] float range = 10f;
-    [SerializeField] float smallRange = 1f;
     [SerializeField] Transform target;
     [SerializeField] Animator enemyAnimator;
     [SerializeField] AudioClip shootSFX;

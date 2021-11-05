@@ -31,7 +31,6 @@ public class TrackingEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (Vector3.Distance(transform.position, target.position) <= range)
         {
             RotateTowardsTarget();
@@ -51,7 +50,7 @@ public class TrackingEnemy : MonoBehaviour
 
     private void RotateTowardsTarget()
     {
-        var offset = 270f;
+        var offset = -90f;
         Vector2 direction = target.position - transform.position;
         direction.Normalize();
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
