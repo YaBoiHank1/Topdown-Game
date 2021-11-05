@@ -17,7 +17,7 @@ public class EnemyBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(bulletCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
+        if(bulletCollider.IsTouchingLayers(LayerMask.GetMask("Player", "Hazards")))
         {
             Destroy(gameObject);
         }
