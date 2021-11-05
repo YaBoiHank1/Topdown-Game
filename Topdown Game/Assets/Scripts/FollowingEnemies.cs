@@ -13,7 +13,8 @@ public class FollowingEnemies : MonoBehaviour
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float rotationSpeed = 1.0f;
     [SerializeField] float moveSpeed = 1.0f;
-    [SerializeField] float range = 10f;
+    [SerializeField] float followingRange = 10f;
+    [SerializeField] float shootingRange = 12f;
     [SerializeField] Transform target;
     [SerializeField] Animator enemyAnimator;
     [SerializeField] AudioClip shootSFX;
@@ -36,7 +37,7 @@ public class FollowingEnemies : MonoBehaviour
     void Update()
     {
         
-        if (Vector3.Distance(transform.position, target.position) <= range)
+        if (Vector3.Distance(transform.position, target.position) <= followingRange)
         {
             MoveTowardsTarget();
             RotateTowardsTarget();
@@ -44,9 +45,15 @@ public class FollowingEnemies : MonoBehaviour
             enemyAnimator.SetBool("isMoving", true);
         }
 
-        if (Vector3.Distance(transform.position, target.position) > range)
+        if (Vector3.Distance(transform.position, target.position) > followingRange)
         {
             enemyAnimator.SetBool("isMoving", false);
+        }
+
+        if (Vector3.Distance(transform.position, target.position) <= shootingRange)
+        {
+            RotateTowardsTarget();
+            countDownAndShoot();
         }
 
         if (shotCounter <= .02f)
