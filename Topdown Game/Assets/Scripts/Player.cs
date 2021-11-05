@@ -41,9 +41,20 @@ public class Player : MonoBehaviour
     [SerializeField] Camera mainCamera;
     [SerializeField] Camera mapCamera;
 
-    [Header("Other")]
+    [Header("Audio")]
+
     [SerializeField] AudioClip shootSFX;
     [SerializeField] AudioClip deathMusic;
+    [SerializeField] float pitchMin = 0f;
+    [SerializeField] float pitchMax = 10f;
+    [SerializeField] float volumeMin = 0f;
+    [SerializeField] float volumeMax = 1f;
+    public AudioClip[] clipArray;
+    public AudioSource effectSource;
+    private int clipIndex;
+
+
+    [Header("Other")]
     [SerializeField] Canvas pauseCanvas;
     [SerializeField] Canvas deathCanvas;
 
@@ -205,13 +216,40 @@ public class Player : MonoBehaviour
         
         if (myCollider.IsTouchingLayers(LayerMask.GetMask("Hazards", "Enemy Projectiles")))
         {
-            
+            PlayRandom();
             playerHealth--;
             healthText.text = "HP: " + playerHealth;
             healthBar.fillAmount = playerHealth * .1f;
             myAnimator.SetTrigger("Hurt");
             Debug.Log(playerHealth);
         }
+    }
+
+    void PlayRoundRobin()
+    {
+        if (clipIndex < clipArray.Length)
+        {
+            effectSource.pitch = Random.Range(pitchMin, pitchMax);
+            effectSource.volume = Random.Range(volumeMin, volumeMax);
+            effectSource.PlayOneShot(clipArray[clipIndex]);
+            clipIndex++;
+        }
+        else
+        {
+            effectSource.pitch = Random.Range(pitchMin, pitchMax);
+            effectSource.volume = Random.Range(volumeMin, volumeMax);
+            clipIndex = 0;
+            effectSource.PlayOneShot(clipArray[clipIndex]);
+            clipIndex++;
+        }
+    }
+
+    void PlayRandom()
+    {
+        effectSource.pitch = Random.Range(pitchMin, pitchMax);
+        effectSource.volume = Random.Range(volumeMin, volumeMax);
+        clipIndex = Random.Range(0, clipArray.Length);
+        effectSource.PlayOneShot(clipArray[clipIndex]);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
