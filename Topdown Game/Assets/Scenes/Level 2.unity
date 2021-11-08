@@ -126740,6 +126740,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9198657576917343986, guid: c0c97d959b6fdda49b7c966e820b45e3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198657576917343986, guid: c0c97d959b6fdda49b7c966e820b45e3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198657576917343986, guid: c0c97d959b6fdda49b7c966e820b45e3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -23
+      objectReference: {fileID: 0}
     - target: {fileID: 9198657577180038126, guid: c0c97d959b6fdda49b7c966e820b45e3, type: 3}
       propertyPath: m_Name
       value: UI Canvas 1
