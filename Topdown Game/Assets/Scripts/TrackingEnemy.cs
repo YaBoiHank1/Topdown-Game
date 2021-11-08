@@ -18,12 +18,15 @@ public class TrackingEnemy : MonoBehaviour
     [SerializeField] AudioClip shootSFX;
     [SerializeField] public GameObject healthPrefab;
     [SerializeField] public GameObject ammoPrefab;
+    [SerializeField] public float deathTime = 1.5f;
 
     BoxCollider2D myCollider;
+    Animator myAnimator;
     // Start is called before the first frame update
     void Start()
     {
         myCollider = GetComponent<BoxCollider2D>();
+        myAnimator = GetComponent<Animator>();
         shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
         enemyAnimator.SetBool("isShooting", false);
     }
@@ -86,7 +89,8 @@ public class TrackingEnemy : MonoBehaviour
         health -= damageDealer.GetDamage();
         if (health <= 0)
         {
-            Destroy(gameObject);
+            myAnimator.SetBool("Alive", true);
+            Invoke("Die", deathTime);
             int r = Random.Range(0, 10);
             if (r < 3)
             {
@@ -99,6 +103,11 @@ public class TrackingEnemy : MonoBehaviour
 
             }
         }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 
 

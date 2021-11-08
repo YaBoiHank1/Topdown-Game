@@ -108,12 +108,14 @@ MonoBehaviour:
   projectileSpeed: 10
   rotationSpeed: 1
   moveSpeed: 1
-  range: 5
+  followingRange: 10
+  shootingRange: 12
   target: {fileID: 0}
   enemyAnimator: {fileID: 7021910727597908997}
   shootSFX: {fileID: 8300000, guid: f8775fac2fdb99244aa1a172504ea0de, type: 3}
   healthPrefab: {fileID: 8612569217924807617, guid: 3b040e8d76a72da4084028d16dac286c, type: 3}
   ammoPrefab: {fileID: 4311418678920004248, guid: 767e71b12419bb147836bcf3cc36ca61, type: 3}
+  deathTime: 1.2
 --- !u!95 &7021910727597908997
 Animator:
   serializedVersion: 3

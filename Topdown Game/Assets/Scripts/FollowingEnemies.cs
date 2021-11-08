@@ -20,14 +20,17 @@ public class FollowingEnemies : MonoBehaviour
     [SerializeField] AudioClip shootSFX;
     [SerializeField] public GameObject healthPrefab;
     [SerializeField] public GameObject ammoPrefab;
-
+    [SerializeField] public float deathTime = 1.5f;
+ 
     private Rigidbody2D myRigidbody;
+    Animator myAnimator;
     BoxCollider2D myCollider;
     // Start is called before the first frame update
     void Start()
     {
         enemyAnimator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
         myCollider = GetComponent<BoxCollider2D>();
         shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
         enemyAnimator.SetBool("isShooting", false);
@@ -36,6 +39,10 @@ public class FollowingEnemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+        {
+            return;
+        }
         
         if (Vector3.Distance(transform.position, target.position) <= followingRange)
         {
@@ -111,7 +118,8 @@ public class FollowingEnemies : MonoBehaviour
         health -= damageDealer.GetDamage();
         if (health <= 0)
         {
-            Destroy(gameObject);
+            myAnimator.SetBool("Alive", true);
+            Invoke("Die", deathTime);
             int r = Random.Range(0, 10);
             if (r < 3)
             {
@@ -124,6 +132,11 @@ public class FollowingEnemies : MonoBehaviour
 
             }
         }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 
 
