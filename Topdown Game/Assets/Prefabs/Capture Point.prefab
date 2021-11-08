@@ -103,7 +103,7 @@ MonoBehaviour:
   capTime: 5
   timer: 0
   enemyPrefab: {fileID: 0}
-  interval: 1000
+  interval: 2000
   enemyCount: 0
   enemyMax: 15
   spawner: 0

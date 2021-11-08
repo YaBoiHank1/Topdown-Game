@@ -34,6 +34,10 @@ public class TrackingEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+        {
+            return;
+        }
         if (Vector3.Distance(transform.position, target.position) <= range)
         {
             RotateTowardsTarget();

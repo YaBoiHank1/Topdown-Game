@@ -101,15 +101,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   shotCounter: 0
-  minTimeBetweenShots: 2
+  minTimeBetweenShots: 3
   maxTimeBetweenShots: 5
   projectile: {fileID: 5533505624361329420, guid: 2aacd8689c8d3b546a8f5456b1221f19, type: 3}
   enemyProjectilePosition: {fileID: 7021910728071352593}
   projectileSpeed: 10
   rotationSpeed: 1
   moveSpeed: 1
-  followingRange: 10
-  shootingRange: 12
+  followingRange: 8
+  shootingRange: 10
   target: {fileID: 0}
   enemyAnimator: {fileID: 7021910727597908997}
   shootSFX: {fileID: 8300000, guid: f8775fac2fdb99244aa1a172504ea0de, type: 3}
